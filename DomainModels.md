@@ -47,16 +47,17 @@ I want to be able to deposit a given amount of money from my bank account
 So that I can pay for things
 ```
 #### Domain Model 2
-| Objects     | Properties                     | Messages            | Output             |
-| ----------- | ------------------------------ | ------------------- | ------------------ |
-| Account     |accountBalance @number          |displayBalance()     | @number            |
-|             |                                |deposit(@transaction)| @void              |
-|             |transactions@Array[@transaction]|displayTransactions()|@Array[@transaction]|
-|             |                                |                     |                    |
-| Balance     |balance @number                 |returnBalance()      | @number            |
-|             |                                |                     |                    |
-| Transaction |depositAmount, date             |getDepositAmount()   |@number             |
-|             |                                |getDate()            |@date               |
+| Objects        | Properties                     | Messages            | Output             |
+| -------------- | ------------------------------ | ------------------- | ------------------ |
+| Account        |accountBalance @number          |displayBalance()     | @number            |
+|                |                                |deposit(@transaction)| @void              |
+|                |transactions@Array[@transaction]|displayTransactions()|@Array[@transaction]|
+|                |                                |                     |                    |
+| Balance        |balance @number                 |returnBalance()      | @number            |
+|                |                                |                     |                    |
+| Transaction    |Amount @number,                 |getDepositAmount()   |@number             |
+|                |transactionType @string,        |getWithdrawalAmount()|@number             |
+|                |date                            |getDate()            |@date               |
 #### Tests 
 I anticipate as part of the transaction class I will need a number of getters to implement deposit and withdrawal functionality in the account class.
 
