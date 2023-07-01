@@ -1,5 +1,6 @@
 {
   "name": "bank-challenge",
+  "type": "module",
   "version": "1.0.0",
   "description": "This challenge helps you practice your OO design skills.",
   "main": "index.js",
