@@ -1,11 +1,69 @@
 import Transaction from "../src/Transaction.js"
 
-let testTransaction
+let testTransaction, testAccount, testBalance
 
 describe("Transaction Getter Tests", () => {
 
+    class mockAccount {
+
+        #accountBalance;
+        #transactionsList = [];
+
+        constructor(balance) {
+            this.#accountBalance = balance;
+        }
+
+        displayBalance() {
+            return this.#accountBalance.returnBalance();
+        }
+
+        displayTransactions() {
+            return this.#transactionsList;
+        }
+
+        deposit(transaction) {
+            const credit = transaction.getTransactionAmount();
+            this.#accountBalance.addMoney(credit);
+            this.#transactionsList.push(transaction);
+            transaction.setRemainingBalance(this.displayBalance());
+        }
+
+        withdraw(transaction) {
+            const debit = transaction.getTransactionAmount();
+            if (debit > this.displayBalance()) throw new Error("Insufficient funds");
+            this.#accountBalance.takeMoney(debit);
+            this.#transactionsList.push(transaction);
+            transaction.setRemainingBalance(this.displayBalance());
+        }
+
+    }
+
+    class mockBalance {
+
+        #balance;
+
+        constructor(inputBalance = 0) {
+            this.#balance = inputBalance
+        }
+
+        returnBalance() {
+            return this.#balance;
+        }
+
+        addMoney(amount) {
+            this.#balance += amount;
+        }
+
+        takeMoney(amount) {
+            this.#balance -= amount;
+        }
+
+    }
+
     beforeEach(() => {
         testTransaction = new Transaction(2000.00, "deposit", "14/01/2012");
+        testBalance = new mockBalance(5000.00);
+        testAccount = new mockAccount(testBalance);
     });
 
     afterEach(() => {
@@ -47,7 +105,8 @@ describe("Transaction Getter Tests", () => {
 
         //Arrange - before each
         //Act
-        const expected = ({ amount: 2000, transactionType: 'deposit', date: '14/01/2012' })
+        const expected = ({ amount: '2000.00', type: 'deposit', date: '14/01/2012', remainingBalance: '3000.00' })
+        testAccount.withdraw(testTransaction);
         //Assert
         expect(testTransaction.constructFullTransaction()).toEqual(expected);
     })

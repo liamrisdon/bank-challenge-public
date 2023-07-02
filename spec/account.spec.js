@@ -27,6 +27,7 @@ describe("Account tests", () => {
         #transactionAmount;
         #transactionType;
         #date;
+        #remainingBalance;
 
         constructor(amount, transactionType, date) {
             this.#transactionAmount = amount;
@@ -44,6 +45,10 @@ describe("Account tests", () => {
 
         getDate() {
             return this.#date;
+        }
+
+        setRemainingBalance(num) {
+            this.#remainingBalance = num;
         }
     };
 
@@ -74,6 +79,7 @@ describe("Account tests", () => {
         let expected;
 
         beforeEach(() => {
+
             testBalance = new mockBalance(0)
             testAccount = new Account(testBalance);
             testTransaction = new mockTransaction(2000.00, "deposit", "14/01/2012");
@@ -93,7 +99,7 @@ describe("Account tests", () => {
 
             //Arrange - before each
             //Act
-            expected = 2000.00
+            let expected = 2000.00
             testAccount.deposit(testTransaction);
             //Assert
             expect(testAccount.displayBalance()).toBe(expected);

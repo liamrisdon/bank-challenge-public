@@ -3,6 +3,8 @@ class Transaction {
     #transactionAmount;
     #transactionType;
     #date;
+    #remainingBalance;
+
 
     constructor(amount, transactionType, date) {
         this.#transactionAmount = amount;
@@ -22,14 +24,19 @@ class Transaction {
         return this.#date;
     }
 
-    constructFullTransaction() {
-        return {
-            amount: this.#transactionAmount,
-            transactionType: this.#transactionType,
-            date: this.#date
-        }
+    setRemainingBalance(num) {
+        this.#remainingBalance = num;
     }
 
+    constructFullTransaction(account) {
+        return {
+            amount: this.#transactionAmount.toFixed(2),
+            type: this.#transactionType,
+            date: this.#date,
+            remainingBalance: this.#remainingBalance.toFixed(2)
+        }
+    }
 }
+
 
 export default Transaction;
