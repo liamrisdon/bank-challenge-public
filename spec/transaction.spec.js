@@ -43,10 +43,13 @@ describe("Transaction Getter Tests", () => {
         expect(testTransaction.getDate()).toBe(expected);
     })
 
+    it('should return full transaction details when constructTransactionDetails is called', () => {
 
-
-
-
-
+        //Arrange - before each
+        //Act
+        const expected = ({ amount: 2000, transactionType: 'deposit', date: '14/01/2012' })
+        //Assert
+        expect(testTransaction.constructFullTransaction()).toEqual(expected);
+    })
 
 })

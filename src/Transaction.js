@@ -22,7 +22,13 @@ class Transaction {
         return this.#date;
     }
 
-
+    constructFullTransaction() {
+        return {
+            amount: this.#transactionAmount,
+            transactionType: this.#transactionType,
+            date: this.#date
+        }
+    }
 
 }
 
