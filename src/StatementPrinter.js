@@ -4,7 +4,7 @@ class StatementPrinter {
     static printStatement(account) {
 
         let statementRow = ["date       || credit  || debit   || balance"];
-        for (const transaction of account.displayTransactions()) {
+        for (const transaction of account.orderTransactions()) {
             statementRow = [...statementRow, StatementPrinter.formatStatement(transaction.constructFullTransaction(account))]
         }
 

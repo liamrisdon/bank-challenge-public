@@ -15,6 +15,10 @@ class Account {
         return this.#transactionsList;
     }
 
+    orderTransactions() {
+        return this.#transactionsList.reverse();
+    }
+
     deposit(transaction) {
         const credit = transaction.getTransactionAmount();
         this.#accountBalance.addMoney(credit);
