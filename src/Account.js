@@ -3,6 +3,8 @@ class Account {
     #accountBalance;
     #transactionsList = [];
 
+
+
     constructor(balance) {
         this.#accountBalance = balance;
     }
@@ -21,7 +23,14 @@ class Account {
         this.#transactionsList.push(transaction);
     }
 
-
+    withdraw(transaction) {
+        const debit = transaction.getTransactionAmount();
+        if (debit > this.displayBalance()) {
+            throw new Error("Insufficient funds");
+        }
+        this.#accountBalance.takeMoney(debit);
+        this.#transactionsList.push(transaction);
+    }
 
 
 }

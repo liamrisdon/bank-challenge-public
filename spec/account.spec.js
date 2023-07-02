@@ -17,6 +17,10 @@ describe("Account tests", () => {
             this.#balance += amount;
         }
 
+        takeMoney(amount) {
+            this.#balance -= amount;
+        }
+
     }
     class mockTransaction {
 
@@ -104,6 +108,60 @@ describe("Account tests", () => {
             expected = 1;
             //Assert
             expect(testAccount.displayTransactions().length).toBe(expected);
+
+        })
+
+    })
+
+    describe("Account Withdrawal tests", () => {
+
+        let testAccount;
+        let testBalance;
+        let testTransaction;
+        let expected;
+
+        beforeEach(() => {
+            testBalance = new mockBalance(2000.00)
+            testAccount = new Account(testBalance);
+            testTransaction = new mockTransaction(500.00, "withdrawal", "14/01/2012");
+        })
+
+        afterEach(() => {
+
+            testBalance = undefined;
+            testAccount = undefined;
+            testTransaction = undefined;
+            expected = undefined;
+
+        })
+
+        it('should update account balance when it is passed a transaction to withdraw', () => {
+
+            //Arrange - before each
+            expected = 1500;
+            //Act
+            testAccount.withdraw(testTransaction);
+            //Assert
+            expect(testAccount.displayBalance()).toBe(expected);
+        })
+
+        it('should add a transaction to the array when an amount is withdrawn', () => {
+
+            //Arrange - before each
+            //Act
+            testAccount.withdraw(testTransaction);
+            expected = 1;
+            //Assert
+            expect(testAccount.displayTransactions().length).toBe(expected);
+        })
+
+        it('should throw an error if amount to withdraw is greater than account balance', () => {
+
+            //Arrange - before each
+            let secondTestTransaction = new mockTransaction(3000.00, "withdrawal", "14/01/2012");
+            //Act - in arrange
+            //Arrange
+            expect(() => { testAccount.withdraw(secondTestTransaction) }).toThrowError("Insufficient funds");
 
         })
 

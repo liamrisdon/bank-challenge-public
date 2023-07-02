@@ -14,6 +14,10 @@ class Balance {
         this.#balance += amount;
     }
 
+    takeMoney(amount) {
+        this.#balance -= amount;
+    }
+
 }
 
 export default Balance;
