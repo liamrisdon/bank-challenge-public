@@ -1,13 +1,17 @@
 class Balance {
 
-    #balance = 0;
+    #balance;
 
-    constructor(inputBalance) {
+    constructor(inputBalance = 0) {
         this.#balance = inputBalance
     }
 
     returnBalance() {
         return this.#balance;
+    }
+
+    addMoney(amount) {
+        this.#balance += amount;
     }
 
 }

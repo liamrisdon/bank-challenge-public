@@ -67,7 +67,7 @@ I anticipate as part of the transaction class I will need a number of getters to
 4. Test that when `deposit()` is called, the transaction is added to account transaction array.
 5. Test that when a new deposit is complete, `displayTransactions()` returns the transactions array.
 6. Test that when a new deposit is complete, `displayTransactions()` returns the transactions array with date and amount. 
-7. Test that an error is throw if `deposit()` is passed something other than a number
+7. Test that an errors and edge cases
 ### User Story 3
 ```
 As a user
